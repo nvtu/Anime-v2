@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.cleveroad.pulltorefresh.firework.FireworkyPullToRefreshLayout;
+
 import java.util.ArrayList;
 
 import joker.anime_v2.Adapter.RecycleAdapter;
@@ -30,6 +32,7 @@ import joker.anime_v2.R;
  */
 public class CartoonFragment extends Fragment implements LoadAnimeList.LoadAnimeListResponse{
 
+    private static final int REFRESH_DELAY = 4500;
     ArrayList<AnimeInfo>[] animeList;
     RecycleAdapter[] adapter;
     int[] curPage;
@@ -39,6 +42,10 @@ public class CartoonFragment extends Fragment implements LoadAnimeList.LoadAnime
     private Context mContext;
     private ArrayList<String> catergories;
     RecyclerView rv;
+    private FireworkyPullToRefreshLayout mPullRefreshView;
+
+    private boolean mIsRefreshing;
+
 
     public CartoonFragment(){
         animeList = new ArrayList[10];
@@ -81,6 +88,7 @@ public class CartoonFragment extends Fragment implements LoadAnimeList.LoadAnime
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.layout_cartoon_list, container, false);
         mContext = rootView.getContext();
+        initFireWorksLayout(rootView);
         initComponents(rootView);
         initLayouts(rootView);
         setHasOptionsMenu(true);
@@ -91,6 +99,23 @@ public class CartoonFragment extends Fragment implements LoadAnimeList.LoadAnime
         loadCartoonList = new LoadAnimeList(mContext);
         loadCartoonList.delegate = this;
         loadCartoonList.execute(linkCategories.get(curList) + String.valueOf(curPage[curList]));
+    }
+
+    private void initFireWorksLayout(View rootView){
+        mPullRefreshView = (FireworkyPullToRefreshLayout) rootView.findViewById(R.id.fireWorkRefresh);
+        mPullRefreshView.setOnRefreshListener(new FireworkyPullToRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mIsRefreshing = true;
+                mPullRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullRefreshView.setRefreshing(mIsRefreshing = false);
+                        loadData();
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
 
     private void initComponents(View rootView) {

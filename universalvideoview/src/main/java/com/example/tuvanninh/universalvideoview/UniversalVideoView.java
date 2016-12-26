@@ -212,18 +212,18 @@ public class UniversalVideoView extends SurfaceView
             return;
         }
 
-        if (direction == OrientationDetector.Direction.PORTRAIT) {
-            setFullscreen(false, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-        else if (direction == OrientationDetector.Direction.REVERSE_PORTRAIT) {
-//            setFullscreen(false, ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
-        }
-        else if (direction == OrientationDetector.Direction.LANDSCAPE) {
-            setFullscreen(true, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-        else if (direction == OrientationDetector.Direction.REVERSE_LANDSCAPE) {
-//            setFullscreen(true, ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-        }
+//        if (direction == OrientationDetector.Direction.PORTRAIT) {
+//            setFullscreen(false, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        }
+//        else if (direction == OrientationDetector.Direction.REVERSE_PORTRAIT) {
+////            setFullscreen(false, ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+//        }
+//        else if (direction == OrientationDetector.Direction.LANDSCAPE) {
+//            setFullscreen(true, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        }
+//        else if (direction == OrientationDetector.Direction.REVERSE_LANDSCAPE) {
+////            setFullscreen(true, ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//        }
     }
 
     public void setFitXY(boolean fitXY) {

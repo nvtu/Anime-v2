@@ -7,10 +7,20 @@
     android:background="@color/tabColor"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvs"
+    <com.cleveroad.pulltorefresh.firework.FireworkyPullToRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item"/>
+        android:layout_height="match_parent"
+        app:ptr_background="@drawable/background">
+
+
+        <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item"/>
+
+    </com.cleveroad.pulltorefresh.firework.FireworkyPullToRefreshLayout>
+
 
 </FrameLayout>

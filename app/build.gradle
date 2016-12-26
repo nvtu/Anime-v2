@@ -37,5 +37,6 @@ dependencies {
     compile 'com.flaviofaria:kenburnsview:1.0.7'
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'org.jsoup:jsoup:1.9.1'
+    compile 'com.cleveroad:fireworkypulltorefresh:1.0.2'
     compile project(':universalvideoview')
 }
