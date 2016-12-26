@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/header_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.github.florent37.diagonallayout.DiagonalLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:elevation="0dp"
+            app:diagonal_angle="10"
+            app:diagonal_gravity="left|bottom">
+
+
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/user_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Van-Tu Ninh"
+                android:textColor="@android:color/white"
+                android:layout_gravity="top|left"
+                android:fontFamily="sans-serif-light"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="120dp"
+                android:textSize="25sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="155dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JUNIOR"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="top|left"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DEVELOPER"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="top|left"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="14sp"
+                    />
+            </LinearLayout>
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="240dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            android:elevation="15dp"
+            android:background="@drawable/avatar_circle"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:id="@+id/info"
+            android:layout_marginTop="280dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/diagonalLayout"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="#3E3E3E"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nvtu@apcs.vn"
+                    android:textStyle="bold"
+                    android:textColor="#3E3E3E"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/info"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="16sp"
+                android:text="ONLY DEAD FISH GO WITH THE FLOW"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
