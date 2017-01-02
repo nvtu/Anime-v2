@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity{
     AHBottomNavigation bottomNavigation;
     ViewPagerAdapter adapter;
     AHBottomNavigationViewPager viewPager;
+    public static boolean hasIntent = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
         setupViewPager();
 
     }
+
 
     private void setupViewPager() {
         viewPager = (AHBottomNavigationViewPager) findViewById(R.id.view_pager);

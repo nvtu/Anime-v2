@@ -29,12 +29,57 @@
 
     </FrameLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gotoFilm"
+        android:padding="5dp"
+        android:background="@color/tabColor"
+        android:layout_below="@+id/video_layout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Episode:"
+                android:textSize="16sp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#FFFFFF"/>
+
+            <EditText
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:background="@drawable/bg_edittext"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/episode"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hbo"
+            android:id="@+id/go"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="0dp"/>
+
+    </RelativeLayout>
+
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="5"
         android:id="@+id/listEps"
         android:background="@color/tabColor"
-        android:layout_below="@+id/video_layout"/>
+        android:layout_below="@+id/gotoFilm"/>
 
 </RelativeLayout>

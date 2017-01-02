@@ -6,6 +6,8 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import joker.anime_v2.DataBase.SQLiteHelper;
+import joker.anime_v2.Fragment.HistoryFragment;
 import joker.anime_v2.ItemData.AnimeInfo;
 import joker.anime_v2.LoadData.LoadDataFilm;
 
@@ -92,6 +96,47 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
     public void processFinish(String href) {
         Intent intent = new Intent(this, WatchAnimeActivity.class);
         intent.putExtra("animeURL", href);
+        intent.putExtra("animeInfo", animeInfo);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.love_menu, menu);
+        MenuItem item = menu.getItem(0);
+        int itemId = item.getItemId();
+        if (itemId == R.id.love){
+            SQLiteHelper db = new SQLiteHelper(this);
+            if (db.checkRecordExist(animeInfo.getName(), 1)){
+                item.setIcon(R.drawable.loveselect);
+            }
+            else{
+                item.setIcon(R.drawable.lovenotselect);
+            }
+            db.close();
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == R.id.love){
+            SQLiteHelper db = new SQLiteHelper(this);
+            if (db.checkRecordExist(animeInfo.getName(), 1)){
+                db.deleteFromFavorite(animeInfo.getName());
+                HistoryFragment.animeList.clear();
+                HistoryFragment.animeList.addAll(db.getAllFavorite());
+                HistoryFragment.adapter.notifyDataSetChanged();
+                item.setIcon(R.drawable.lovenotselect);
+            }
+            else{
+                db.insertFavorite(animeInfo);
+                item.setIcon(R.drawable.loveselect);
+            }
+            db.close();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

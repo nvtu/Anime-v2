@@ -32,4 +32,5 @@
         android:fontFamily="sans-serif-condensed"
         android:id="@+id/animeEpisode"/>
 
+
 </RelativeLayout>
