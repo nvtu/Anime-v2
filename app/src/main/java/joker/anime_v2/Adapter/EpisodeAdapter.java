@@ -5,6 +5,7 @@ package joker.anime_v2.Adapter;
  */
 
 import android.content.Context;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,13 @@ import java.util.ArrayList;
 
 import joker.anime_v2.R;
 
-public class EpisodeAdapter extends ArrayAdapter<String> {
+public class EpisodeAdapter extends ArrayAdapter<Pair<String,String>> {
 
     Context context;
     int resource;
-    ArrayList<String> listEps;
+    ArrayList<Pair<String,String>> listEps;
 
-    public EpisodeAdapter(Context context, int resource, ArrayList<String> listEps) {
+    public EpisodeAdapter(Context context, int resource, ArrayList<Pair<String,String>> listEps) {
         super(context, resource, listEps);
         this.context = context;
         this.resource = resource;
@@ -34,7 +35,7 @@ public class EpisodeAdapter extends ArrayAdapter<String> {
             convertView = LayoutInflater.from(context).inflate(resource, parent, false);
         }
         TextView vEps = (TextView) convertView.findViewById(R.id.epsInfo);
-        vEps.setText(String.valueOf(position+1));
+        vEps.setText(listEps.get(position).second);
         return convertView;
     }
 }

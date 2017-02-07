@@ -2,23 +2,65 @@
 <resources>
     <string-array name="spinner_list_item_array">
 
-
-
-        <item>Shoujo</item>
-        <item>Shounen Ai</item>
-        <item>Tragedy</item>
+        <item>Trang Chủ</item>
+        <item>Hành Động</item>
+        <item>Phiêu Lưu</item>
+        <item>Học Đường</item>
+        <item>Hài Hước</item>
+        <item>Đời Thường</item>
+        <item>Trinh Thám</item>
+        <item>Drama</item>
+        <item>Ecchi</item>
+        <item>Harem</item>
+        <item>Giả Tưởng</item>
+        <item>Hikikomori</item>
+        <item>Lịch Sử</item>
+        <item>Kinh Dị</item>
+        <item>Tình Tay Ba</item>
+        <item>Phép Thuật</item>
         <item>Mecha</item>
-        <item>Siêu Năng Lực</item>
-        <item>Parody</item>
-        <item>Quân Đội</item>
-        <item>Live Action</item>
-        <item>Shoujo AI</item>
-        <item>Josei</item>
-        <item>Thể Thao</item>
         <item>Âm Nhạc</item>
-        <item>Samurai</item>
+        <item>Bí Ẩn</item>
+        <item>Psychological</item>
+        <item>Tình Yêu</item>
+        <item>Vũ Trụ</item>
+        <item>Thể Thao</item>
+        <item>Tragedy</item>
+        <item>Ma Cà Rồng</item>
+        <item>Siêu Nhiên</item>
+        <item>Shoujo Ai</item>
+        <item>Shounen Ai</item>
+        <item>Yuri</item>
+        <item>Yaoi</item>
+        <item>Shoujo</item>
+        <item>Shounen</item>
+        <item>Live Action</item>
         <item>Tokusatsu</item>
-        <item>Space</item>
         <item>Thriller</item>
+        <item>Siêu Năng Lực</item>
+        <item>Kids</item>
+        <item>Game</item>
+        <item>Hoán Đổi Giới Tính</item>
+        <item>Đấu Súng</item>
+        <item>Josei</item>
+        <item>Kemonomimi</item>
+        <item>Võ Thuật</item>
+        <item>Quân Đội</item>
+        <item>Ninja</item>
+        <item>Tiểu Thuyết</item>
+        <item>Thế Giới Song Song</item>
+        <item>Parody</item>
+        <item>Police</item>
+        <item>Samurai</item>
+        <item>Viễn Tưởng</item>
+        <item>Japanese Drama</item>
+        <item>Bạo Lực</item>
+        <item>Du Hành Thời Gian</item>
+        <item>Cartoon</item>
+        <item>Ác Quỷ</item>
+        <item>Thiên Thần</item>
+        <item>Seinen</item>
+        <item>Cars</item>
+
     </string-array>
 </resources>

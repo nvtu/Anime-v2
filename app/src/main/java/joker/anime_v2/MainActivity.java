@@ -11,7 +11,6 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 
 import joker.anime_v2.Adapter.ViewPagerAdapter;
 import joker.anime_v2.Fragment.AnimeListFragment;
-import joker.anime_v2.Fragment.CartoonFragment;
 import joker.anime_v2.Fragment.HistoryFragment;
 import joker.anime_v2.Fragment.PersonalFragment;
 import joker.anime_v2.Fragment.SearchFragment;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
         adapter.addFrag(new HistoryFragment());
         adapter.addFrag(new SearchFragment());
         adapter.addFrag(new AnimeListFragment());
-        adapter.addFrag(new CartoonFragment());
+//        adapter.addFrag(new CartoonFragment());
         viewPager.setAdapter(adapter);
     }
 
@@ -57,14 +56,14 @@ public class MainActivity extends AppCompatActivity{
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.tab_2, R.drawable.history, R.color.tabColor);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.tab_3, R.drawable.search, R.color.tabColor);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.tab_4, R.drawable.anime, R.color.tabColor);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.tab_5, R.drawable.film, R.color.tabColor);
+//        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.tab_5, R.drawable.film, R.color.tabColor);
 
         // Add items
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item3);
         bottomNavigation.addItem(item4);
-        bottomNavigation.addItem(item5);
+//        bottomNavigation.addItem(item5);
 
         // Set background color
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));

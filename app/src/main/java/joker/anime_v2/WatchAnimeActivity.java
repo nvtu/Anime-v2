@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +34,7 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
     private static final String TAG = "WatchingFilmActivity";
     String filmURL;
     EpisodeAdapter epsAdapter;
-    ArrayList<String> listEps;
+    ArrayList<Pair<String,String>> listEps;
     LoadEpisodeTask loadEpisodeTask;
     GridView gridView;
     ImageView gotoFilm;
@@ -66,7 +67,7 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
                 int position = Integer.valueOf(inpText.getText().toString());
                 if (position > 0 && position < listEps.size() + 1){
                     curEps = position - 1;
-                    loadData(listEps.get(position - 1));
+                    loadData(listEps.get(position - 1).first);
                 }
                 else Toast.makeText(WatchAnimeActivity.this, "Your input is invalid", Toast.LENGTH_SHORT).show();
             }
@@ -77,14 +78,14 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
         listEps = new ArrayList<>();
         epsAdapter = new EpisodeAdapter(this, R.layout.item_eps, listEps);
         gridView.setAdapter(epsAdapter);
-        gridView.setNumColumns(5);
+        gridView.setNumColumns(3);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView vEps = (TextView) view.findViewById(R.id.epsInfo);
                 vEps.setTextColor(getResources().getColor(R.color.red));
                 curEps = position;
-                loadData(listEps.get(position));
+                loadData(listEps.get(position).first);
             }
         });
         loadEpisodeTask.execute(filmURL);
@@ -100,6 +101,7 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
             public void onCompletion(MediaPlayer mp) {
             }
         });
+
     }
 
     private void loadData(String url){
@@ -123,6 +125,8 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
     }
 
     private void startFilm(final String filmPath){
+
+        Log.d("filmPath", filmPath);
         SQLiteHelper db = new SQLiteHelper(this);
         if (db.checkRecordExist(animeInfo.getName(), 0)){
             db.updateHistory(animeInfo.getName(), String.valueOf(curEps+1), animeInfo.getAnimeURL());
@@ -240,7 +244,7 @@ public class WatchAnimeActivity extends AppCompatActivity implements LoadEpisode
     }
 
     @Override
-    public void processFinish(ArrayList<String> epsList, String movieURL) {
+    public void processFinish(ArrayList<Pair<String,String>> epsList, String movieURL) {
         listEps.addAll(epsList);
         epsAdapter.notifyDataSetChanged();
         startFilm(movieURL);

@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +27,7 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
     private AppBarLayout appBarLayout;
     AnimeInfo animeInfo;
     TextView animeTitle, numEps, tvDescription;
-    Button playButton;
+    FloatingActionButton playButton;
     LoadDataFilm loadDataFilm;
 
     @Override
@@ -39,6 +39,7 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
         setSupportActionBar(toolbar);
 
         animeInfo = (AnimeInfo) getIntent().getSerializableExtra("AnimeInformation");
+        loadData();
         initLayouts();
         initListeners();
     }
@@ -63,15 +64,10 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
                 }
             }
         });
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadData();
-            }
-        });
+
     }
 
-    void loadData(){
+    private void loadData(){
         loadDataFilm = new LoadDataFilm(this);
         loadDataFilm.delegate = this;
         loadDataFilm.execute(animeInfo.getAnimeURL());
@@ -84,21 +80,12 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
         tvDescription = (TextView) findViewById(R.id.animeDescription);
         numEps = (TextView) findViewById(R.id.episode);
         userCoverView = (ImageView) findViewById(R.id.anime_cover);
-        playButton = (Button) findViewById(R.id.playButton);
+        playButton = (FloatingActionButton) findViewById(R.id.playButton);
         Picasso.with(this).load(animeInfo.getImgURL()).into(userCoverView);
         animeTitle.setText(animeInfo.getName());
-        tvDescription.setText(animeInfo.getDesFilm());
+//        tvDescription.setText(animeInfo.getDesFilm());
         numEps.setText(animeInfo.getNumEps());
 
-    }
-
-    @Override
-    public void processFinish(String href) {
-        Intent intent = new Intent(this, WatchAnimeActivity.class);
-        intent.putExtra("animeURL", href);
-        intent.putExtra("animeInfo", animeInfo);
-        startActivity(intent);
-        finish();
     }
 
     @Override
@@ -138,5 +125,22 @@ public class DetailActivity extends AppCompatActivity implements LoadDataFilm.Lo
             db.close();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void processFinish(final String href, String description) {
+        tvDescription.setText(description);
+        animeInfo.setDesFilm(description);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, WatchAnimeActivity.class);
+                intent.putExtra("animeURL", href);
+                intent.putExtra("animeInfo", animeInfo);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 }

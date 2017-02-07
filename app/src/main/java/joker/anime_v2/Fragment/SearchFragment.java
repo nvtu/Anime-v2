@@ -1,5 +1,6 @@
 package joker.anime_v2.Fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import joker.anime_v2.Adapter.RecycleAdapter;
 import joker.anime_v2.ItemData.AnimeInfo;
@@ -30,6 +32,8 @@ public class SearchFragment extends Fragment implements LoadAnimeList.LoadAnimeL
     private RecycleAdapter adapter;
     ArrayList<AnimeInfo> animeList;
     LoadAnimeList loadAnimeList;
+    Integer curPage = 1;
+    String q;
 
     public SearchFragment(){
 
@@ -44,10 +48,10 @@ public class SearchFragment extends Fragment implements LoadAnimeList.LoadAnimeL
         return rootView;
     }
 
-    private void loadData(View rootView, String query){
-        loadAnimeList = new LoadAnimeList(rootView.getContext());
+    private void loadData(){
+        loadAnimeList = new LoadAnimeList(getContext());
         loadAnimeList.delegate = this;
-        loadAnimeList.execute(query);
+        loadAnimeList.execute(q+curPage);
     }
 
     private void initLayouts(final View rootView) {
@@ -64,8 +68,9 @@ public class SearchFragment extends Fragment implements LoadAnimeList.LoadAnimeL
             @Override
             public boolean onQueryTextSubmit(String query) {
                 //Do some magic
-                query = "http://animehay.com/tim-kiem?q=" + query.replace(' ','+');
-                loadData(rootView, query);
+                curPage = 1;
+                q = "http://m.animetvn.com/tim-kiem/" + Uri.encode(query) + ".html?p=";
+                loadData();
                 return false;
             }
 
@@ -99,11 +104,40 @@ public class SearchFragment extends Fragment implements LoadAnimeList.LoadAnimeL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.backk){
+            if (q == null || q.isEmpty()) return true;
+            curPage--;
+            loadData();
+            return true;
+        }
+        else if (id == R.id.nextt){
+            if (q == null || q.isEmpty()) return true;
+            curPage++;
+            loadData();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void processFinish(ArrayList<AnimeInfo> animeList) {
+        boolean isDiff = true;
+        TreeMap<String,Boolean> map = new TreeMap<>();
+        for (AnimeInfo it : this.animeList){
+            map.put(it.getName(), Boolean.TRUE);
+        }
+        for (AnimeInfo it : animeList){
+            if (map.containsKey(it.getName())){
+                isDiff = false;
+                break;
+            }
+        }
+        if (!isDiff || animeList.size() == 0){
+            if (curPage == 0) curPage++;
+            else curPage--;
+            return;
+        }
         this.animeList.clear();
         this.animeList.addAll(animeList);
         adapter.notifyDataSetChanged();

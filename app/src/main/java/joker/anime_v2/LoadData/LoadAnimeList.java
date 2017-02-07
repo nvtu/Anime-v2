@@ -1,6 +1,7 @@
 package joker.anime_v2.LoadData;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -25,19 +26,20 @@ public class LoadAnimeList extends LoadDataTask{
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
         animeList.clear();
         org.jsoup.nodes.Document doc = Jsoup.parse(s);
-        Elements film = doc.body().select("div.film-block").select("div.col-film");
+        Elements film = doc.body().select("div.list-movie").select("div.items");
         for (org.jsoup.nodes.Element it: film){
-            String yearFilm = it.select("div.year-film").text();
-            String desFilm = it.select("div.des-film").text();
-            String filmURL = it.select("div.w").select("a.thumb").attr("href");
-            String name = it.select("div.w").select("a.thumb").attr("title");
-            String imgURL = it.select("div.w").select("a.thumb").select("img").attr("src");
-            String numEps = it.select("div.w").select("span.no").text();
-            imgURL = imgURL.substring(imgURL.indexOf("&url=")+5, imgURL.length());
-            AnimeInfo animeInfo = new AnimeInfo(name, filmURL, numEps, imgURL, desFilm, yearFilm);
+//            String yearFilm = it.select("div.year-film").text();
+//            String desFilm = it.select("div.des-film").text();
+            String filmURL = it.select("a").attr("href");
+            String name = it.select("a").attr("title");
+            String imgURL = it.select("a").select("img").attr("src");
+            String numEps = it.select("span.time").text();
+            AnimeInfo animeInfo = new AnimeInfo(name, filmURL, numEps, imgURL, "", "");
             animeList.add(animeInfo);
+            Log.d("abc", imgURL);
         }
         delegate.processFinish(animeList);
     }

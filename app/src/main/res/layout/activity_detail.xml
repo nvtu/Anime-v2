@@ -49,7 +49,6 @@
                     android:background="#D0262626"
                     android:textAlignment="center"
                     android:textSize="16sp"/>
-
             </com.github.florent37.diagonallayout.DiagonalLayout>
 
             <android.support.v7.widget.Toolbar
@@ -67,19 +66,33 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/play"
+                android:id="@+id/playButton"
+                app:backgroundTint="#2196f3"
+                app:fabSize="normal"
+                />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/episode"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
                 android:textSize="20sp"
                 android:layout_margin="10dp"
                 android:textColor="#FFFFFF"
+                android:layout_below="@+id/playButton"
                 android:fontFamily="sans-serif-condensed"
                 android:textAlignment="center"/>
 
@@ -87,26 +100,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/animeDescription"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
+                android:layout_below="@+id/episode"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="16sp"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="WATCH"
-                android:textColor="#FFFFFF"
-                android:drawablePadding="10dp"
-                android:padding="10dp"
-                android:background="@drawable/circular_transparent_button"
-                android:drawableLeft="@drawable/play"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/playButton"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </android.support.v4.widget.NestedScrollView>

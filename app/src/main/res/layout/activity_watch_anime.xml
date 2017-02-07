@@ -77,7 +77,7 @@
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="5"
+        android:numColumns="3"
         android:id="@+id/listEps"
         android:background="@color/tabColor"
         android:layout_below="@+id/gotoFilm"/>
